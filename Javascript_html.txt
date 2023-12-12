@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script type="text/javascript">
+        function DataLoad(){
+            fetch("../data/products.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(products){
+                products.map(function(product){
+                    var div = document.createElement("div");
+                    div.className = "row m-4 p-2 border border-1 border-dark";
+                    div.innerHTML = `
+                        <div class="col-4">
+                            <img src=${product.image} width="80%">
+                        </div>
+                        <div class="col-8">
+                            <div class="h3 text-danger">
+                                ${product.title}
+                            </div>
+                            <div>
+                                <span class="badge bg-success p-2 m-2 text-white rounded rounded-2">${product.rating.rate}<span class="bi bi-star-fill"></span></span>
+                                <span><b>${product.rating.count}Rating & ${product.rating.reviews}Reviews</b></span> 
+                            </div>
+                            <div class="h2 mt-2 mb-2">
+                                 &#8377;${product.price}
+                            </div>
+                            <div class="p-3 m-1">
+                                <li class="h-7">
+                                    Bank Offer10% off on HDFC Bank Credit Card EMI Transactions, up to ₹750 on orders of ₹7,500 and aboveT&C
+                                </li>
+                                <li class="h-7">
+                                    Bank OfferExtra ₹500 off on HDFC Bank Credit Card EMI on 6 months and above tenure, Min. Product Value ₹24,990T&C
+                                </li>
+                                <li class="h-7">
+                                    Bank OfferExtra ₹750 off on HDFC Bank Credit Card EMI on 9 months and above tenure, Min. Product Value ₹50,000T&C
+                                </li>
+                                <li class="h-7">
+                                    Special PriceGet extra ₹10901 off (price inclusive of cashback/coupon)T&C
+                                </li>
+                                </b>
+                            </div>
+
+                        </div>
+                    `
+                    document.querySelector("main").appendChild(div);
+                })
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="DataLoad()">
+    <main>
+
+    </main>
+</body>
+</html>
